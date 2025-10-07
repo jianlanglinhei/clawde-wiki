@@ -1,0 +1,25 @@
+{
+  "name": "clawde-wiki",
+  "version": "1.0.0",
+  "description": "Clawde Wiki Project",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "start": "node dist/index.js",
+    "watch": "tsc --watch",
+    "clean": "rm -rf dist",
+    "tree": "ts-node src/tree.ts",
+    "tree:git": "ts-node src/tree.ts --git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {}
+}
+
