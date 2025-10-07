@@ -10,7 +10,10 @@
     "watch": "tsc --watch",
     "clean": "rm -rf dist",
     "tree": "ts-node src/tree.ts",
-    "tree:git": "ts-node src/tree.ts --git"
+    "tree:git": "ts-node src/tree.ts --git",
+    "example:simple": "ts-node src/examples/simpleChat.ts",
+    "example:tools": "ts-node src/examples/chatWithTools.ts",
+    "example:session": "ts-node src/examples/sessionManagement.ts"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +23,11 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.30.0",
+    "@types/uuid": "^9.0.7",
+    "dotenv": "^16.3.1",
+    "uuid": "^9.0.1"
+  }
 }
 

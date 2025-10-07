@@ -1,18 +1,26 @@
-import { DirectoryTree, generateGitTree } from './tree';
+/**
+ * Clawde Wiki - Claude Agent SDK 项目
+ * 
+ * 这是一个集成了 Anthropic Claude SDK 的 TypeScript 项目
+ */
 
-// 示例：打印当前项目目录树
-console.log('=== 完整目录树 ===\n');
-const dirTree = new DirectoryTree();
-dirTree.printTree(process.cwd(), 5);
+import * as dotenv from 'dotenv';
 
-// 示例：打印 Git 跟踪的文件（main 分支）
-console.log('\n=== Git 跟踪的文件 (main 分支) ===\n');
-try {
-  const gitTree = generateGitTree(process.cwd(), 'main');
-  console.log(gitTree);
-} catch (error) {
-  console.log('未找到 Git 仓库或 Git 命令失败');
-}
+// 加载环境变量
+dotenv.config();
 
-export {};
+console.log('=== Clawde Wiki ===\n');
+console.log('一个基于 Claude Agent SDK 的 TypeScript 项目\n');
+
+console.log('可用的示例命令：');
+console.log('- npm run example:simple    # 简单对话示例');
+console.log('- npm run example:tools     # 工具调用示例');
+console.log('- npm run example:session   # 会话管理示例');
+console.log('- npm run tree              # 显示目录树');
+console.log('- npm run tree:git          # 显示 Git 文件树');
+console.log('\n提示: 请先在 .env 文件中设置 ANTHROPIC_API_KEY\n');
+
+// 导出模块
+export * from './agent';
+export * from './tree';
 
