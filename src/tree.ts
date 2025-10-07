@@ -135,12 +135,16 @@ export class DirectoryTree {
 
 /**
  * 获取 Git 跟踪的文件列表
+ * 使用 git ls-tree 命令获取指定分支的文件树
  */
-export function getGitTrackedFiles(repoPath: string): string[] {
+export function getGitTrackedFiles(
+  repoPath: string,
+  branch: string = 'main'
+): string[] {
   const { execSync } = require('child_process');
 
   try {
-    const output = execSync('git ls-files', {
+    const output = execSync(`git ls-tree ${branch} -r --name-only`, {
       cwd: repoPath,
       encoding: 'utf-8',
     }) as string;
@@ -157,8 +161,11 @@ export function getGitTrackedFiles(repoPath: string): string[] {
 /**
  * 生成 Git 跟踪文件的树结构
  */
-export function generateGitTree(repoPath: string): string {
-  const files = getGitTrackedFiles(repoPath);
+export function generateGitTree(
+  repoPath: string,
+  branch: string = 'main'
+): string {
+  const files = getGitTrackedFiles(repoPath, branch);
   const tree: any = {};
 
   // 构建树结构
@@ -224,7 +231,10 @@ if (require.main === module) {
 
   if (useGit) {
     try {
-      const tree = generateGitTree(targetPath);
+      const branch = args.includes('--branch')
+        ? args[args.indexOf('--branch') + 1]
+        : 'main';
+      const tree = generateGitTree(targetPath, branch);
       console.log(tree);
     } catch (error) {
       console.error('Error:', (error as Error).message);

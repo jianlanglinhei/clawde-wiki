@@ -47,7 +47,7 @@ npm start
    npm run tree
    ```
 
-2. **显示 Git 跟踪的文件**
+2. **显示 Git 跟踪的文件（使用 `git ls-tree`）**
    ```bash
    npm run tree:git
    ```
@@ -60,9 +60,13 @@ npm start
    const dirTree = new DirectoryTree();
    dirTree.printTree('/path/to/directory', 5); // 最大深度 5
 
-   // 生成 Git 跟踪文件树
-   const gitTree = generateGitTree('/path/to/repo');
+   // 生成 Git 跟踪文件树（默认 main 分支）
+   const gitTree = generateGitTree('/path/to/repo', 'main');
    console.log(gitTree);
+   
+   // 指定其他分支
+   const devTree = generateGitTree('/path/to/repo', 'develop');
+   console.log(devTree);
    ```
 
 功能特性：
@@ -70,5 +74,6 @@ npm start
 - 支持自定义忽略模式
 - 支持深度限制
 - 美观的树形显示
-- 支持 Git 集成，显示版本控制的文件
+- 使用 `git ls-tree` API 获取版本控制的文件（支持指定分支）
+- 支持多分支查看
 
